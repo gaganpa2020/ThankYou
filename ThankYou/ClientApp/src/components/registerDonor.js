@@ -1,7 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-class Popup extends React.Component {
+export class Popup extends React.Component {
 	render() {
 		return (
 			<div className='popup'>
@@ -17,4 +16,4 @@ class Popup extends React.Component {
 		);
 	}
 }
-export default connect()(Popup);
+export default Popup;
