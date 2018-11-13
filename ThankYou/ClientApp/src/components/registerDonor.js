@@ -5,6 +5,7 @@ export class Popup extends React.Component {
 		return (
 			<div className='popup'>
 				<div className='popup_inner'>
+					<button onClick={this.props.closePopup}>close me</button>
 					//Show field to register a donor.
 					Name: <input type="text" />
 					Name: <input type="text" />
