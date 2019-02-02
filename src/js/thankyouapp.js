@@ -53,9 +53,7 @@ App = {
       return thankYouInstance;
     }).then(function(instance) {
       // Do not allow a user to vote
-      if(instance) {
-        $('form').hide();
-      }
+     
       loader.hide();
       content.show();
     }).catch(function(error) {
