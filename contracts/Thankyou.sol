@@ -1,28 +1,38 @@
 pragma solidity ^0.4.22;
+//pragma solidity ^0.5.0;
 
 contract Thankyou {
   address owner; 
 
-  struct Person{
-    uint Thankyou;
+  struct Thank{
+    address toAddress;
+    string name;
+    uint amount; //Considering for Phase-II.
   }
 
-
-  mapping(address => Person) public personsThanks;
+  mapping (address=> Thank[]) public myThankYouList;
+  mapping(address => uint) public ThankYouList;
   
   constructor() public {
     owner = msg.sender;
   }
 
-  function sayThanks(address toAddress) public {
-
-    if(personsThanks[toAddress].Thankyou != 0)
+  function sayThanks(address fromAddress, address toAddress, string memory name, uint amount) public {    
+      //Validation-1 (to & from address should not be same)
+      //Validation-2 (amount should not be zero)
+      //Validation-3 (from account should have a fair amount to transfer)      
+      Thank memory newThanks = Thank(toAddress, name, amount);
+      myThankYouList[fromAddress].push(newThanks);  
+      
+    if(ThankYouList[toAddress] != 0)
     {
-      uint count = personsThanks[toAddress].Thankyou;
-      personsThanks[toAddress].Thankyou = count + 1;
+      uint count = ThankYouList[toAddress];
+      ThankYouList[toAddress] = count + 1;
     }
     else {
-      personsThanks[toAddress] = Person(1);
+      ThankYouList[toAddress] = 1;
     }
   }
+  
+   
 }

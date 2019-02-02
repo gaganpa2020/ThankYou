@@ -11,7 +11,7 @@ contract("Thankyou", function(accounts) {
         });
     });
 
-
+    /*
     it("Check say thanks", function(){
         return Thankyou.deployed().then(function(instance){
             thankyouInstance = instance;
@@ -30,5 +30,16 @@ contract("Thankyou", function(accounts) {
             assert(thankYouCount == 2, "Thanks count is not as expected.");
         });
     });
+    */
 
+    it("check say thanks", function(){
+        return Thankyou.deployed().then(function(instance){
+            thankyouInstance = instance;
+            return thankyouInstance.sayThanks(accounts[0], accounts[1], 'Gagan', 0);
+        }).then(function(){
+            return thankyouInstance.ThankYouList(accounts[1]);
+        }).then(function(ratings){
+            assert(ratings == 1, "No rating recorded for given account");
+        });
+    });
 });
